@@ -33,25 +33,27 @@ class _QuoteScreenState extends State<QuoteScreen> {
         builder:
         ((controller) => HandlingDataView(
             statusRequest: controller.statusRequest,
-            widget: Column(
-              children: [
-                QuoteContent(
-                  quote: randomQuoteController.quote,
-                ),
-                InkWell(
-                    onTap: () => randomQuoteController.getRandomQuote(),
-                    child: Container(
-                      margin: const EdgeInsets.symmetric(vertical: 15),
-                      padding: const EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                          shape: BoxShape.circle, color: AppColors.primary),
-                      child: const Icon(
-                        Icons.refresh,
-                        size: 28,
-                        color: Colors.white,
-                      ),
-                    ))
-              ],
+            widget: Center(
+              child: Column(
+                children: [
+                  QuoteContent(
+                    quote: randomQuoteController.quote,
+                  ),
+                  InkWell(
+                      onTap: () => randomQuoteController.getRandomQuote(),
+                      child: Container(
+                        margin: const EdgeInsets.symmetric(vertical: 15),
+                        padding: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle, color: AppColors.primary),
+                        child: const Icon(
+                          Icons.refresh,
+                          size: 28,
+                          color: Colors.white,
+                        ),
+                      ))
+                ],
+              ),
             ))));
   }
 
@@ -66,8 +68,6 @@ class _QuoteScreenState extends State<QuoteScreen> {
         onPressed: () {
           LocaleController localeController=Get.find();
           String lo=localeController.currentLang!.languageCode;
-          print(lo);
-          // localeController.currentLang!.languageCode=="en"
           if (lo=="ar") {
             localeController.changeLang("en");
           } else {

@@ -28,13 +28,10 @@ class LocaleController extends GetxController {
 
   changeLang(String langcode) {
 
-    print("object");
-    print(langcode);
-
 
 
     Locale locale = Locale(langcode);
-    print(locale);
+
     currentLang=locale;
     myServices.sharedPreferences.setString("lang", langcode);
     appTheme = langcode == "ar" ? themeArabic : themeEnglish;

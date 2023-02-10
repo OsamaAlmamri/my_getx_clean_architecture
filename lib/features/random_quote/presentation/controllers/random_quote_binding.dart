@@ -9,35 +9,11 @@ import 'package:my_getx_clean_architecture/features/random_quote/presentation/co
 class RandomQuoteBinding extends Bindings {
   @override
   void dependencies() {
-    print("dependencies");
-    //// Blocs
-    //   sl.registerFactory<RandomQuoteCubit>(
-    //           () => RandomQuoteCubit(getRandomQuoteUseCase: sl()));
-
     Get.lazyPut(() => RandomQuoteController(getRandomQuoteUseCase: Get.find()));
-
-
-    //   // Use cases
-    //   sl.registerLazySingleton<GetRandomQuote>(
-    //           () => GetRandomQuote(quoteRepository: sl()));
     Get.lazyPut(() => GetRandomQuote(quoteRepository: Get.find()));
-
-
-
-    //   // Repository
-    // Get.lazyPut(() => QuoteRepository());
     Get.lazyPut(() => QuoteRepositoryImpl());
-    // Get.lazyPut(() => QuoteRepository(Get.find<QuoteRepositoryImpl>()));
-    //   sl.registerLazySingleton<QuoteRepository>(() => QuoteRepositoryImpl(
-    //       networkInfo: sl(),
-    //       randomQuoteRemoteDataSource: sl(),
-    //       randomQuoteLocalDataSource: sl()));
-
-    //   // Data Sources
     Get.lazyPut(() => RandomQuoteLocalDataSourceImpl());
     Get.lazyPut(() => RandomQuoteRemoteDataSourceImpl());
-    // Get.put(RandomQuoteRemoteDataSource());
 
-    // Get.lazyPut(() => GetRandomQuote(Get.find<QuoteRepositoryImpl>()));
   }
 }

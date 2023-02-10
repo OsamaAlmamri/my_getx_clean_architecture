@@ -18,32 +18,35 @@ class RandomQuoteController extends GetxController {
 
   Future<void> getRandomQuote() async {
     statusRequest = StatusRequest.loading;
-
+    update();
     Either<Failure, Quote> response = await getRandomQuoteUseCase(NoParams());
-
-    print("=============================================");
-    print("++++++++++++++++++");
     var res = response.fold(
-        (failure) => handlingData(response) ,
+        (failure)  { print(" ----------- response");  print(response);   print(failure); _mapFailureToMsg(failure); handlingData(response);} ,
         (q) {    quote=q;   statusRequest = StatusRequest.success; });
 
     update();
-    // var res =   response.fold((l) => l, (r) => r);
-    // // quote=res;
-    // print("------------");
-    print("quote");
-    print(quote);
-    // quote=res;
   }
 
   String _mapFailureToMsg(Failure failure) {
+
+    print("failure");
+    print(failure);
     switch (failure.runtimeType) {
       case ServerFailure:
-        return AppString.serverFailure;
+        {
+          statusRequest = StatusRequest.serverfailure;
+          return AppString.serverFailure;
+        }
       case CacheFailure:
-        return AppString.cacheFailure;
+        {
+          statusRequest = StatusRequest.offlinefailure;
+          return AppString.cacheFailure;
+        }
       default:
-        return AppString.unexpectedError;
+        {
+          statusRequest = StatusRequest.failure;
+          return AppString.unexpectedError;
+        }
     }
   }
 
