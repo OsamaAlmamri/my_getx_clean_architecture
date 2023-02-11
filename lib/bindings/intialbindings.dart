@@ -30,7 +30,8 @@ class InitialBindings extends Bindings {
 
     //! External
 
-
+    Get.put(InternetConnectionChecker());
+    // Get.put(SharedPreferences());
     final sharedPreferences = await SharedPreferences.getInstance();
     // sl.registerLazySingleton(() => sharedPreferences);
     Get.put(sharedPreferences);

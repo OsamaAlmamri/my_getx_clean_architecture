@@ -28,9 +28,6 @@ class RandomQuoteController extends GetxController {
   }
 
   String _mapFailureToMsg(Failure failure) {
-
-    print("failure");
-    print(failure);
     switch (failure.runtimeType) {
       case ServerFailure:
         {

@@ -77,11 +77,15 @@ class DioConsumer implements ApiConsumer {
   }
 
   dynamic _handleResponseAsJson(Response<dynamic> response) {
-    final responseJson = jsonDecode(response.data.toString());
+    final responseJson = jsonDecode(response.data);
     return responseJson;
   }
 
   dynamic _handleDioError(DioError error) {
+
+    print("eeeeeeeeeeeeeeeeeeeee");
+    print(error);
+    print("eeeeeeeeeeeeeeeeeeeee");
     switch (error.type) {
       case DioErrorType.connectTimeout:
       case DioErrorType.sendTimeout:

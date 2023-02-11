@@ -17,7 +17,7 @@ class LangRepositoryImpl implements LangRepository {
           await langLocalDataSource.changeLang(langCode: langCode);
       return Right(langIsChanged);
     } on CacheException {
-      return Left(CacheFailure());
+      return Left(CacheFailure(CacheException));
     }
   }
 
@@ -27,7 +27,7 @@ class LangRepositoryImpl implements LangRepository {
       final langCode = await langLocalDataSource.getSavedLang();
       return Right(langCode);
     } on CacheException {
-      return Left(CacheFailure());
+      return Left(CacheFailure(CacheException));
     }
   }
 }
