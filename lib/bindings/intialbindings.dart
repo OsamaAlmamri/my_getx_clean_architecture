@@ -21,12 +21,20 @@ class InitialBindings extends Bindings {
     //! Core
     // Get.lazyPut(()=>NetworkInfo());
     // Get.put(ApiConsumer(Get.find()));
+    Get.lazyPut(() => LogInterceptor(
+        request: true,
+        requestBody: true,
+        requestHeader: true,
+        responseBody: true,
+        responseHeader: true,
+        error: true));
+
     Get.lazyPut(() => NetworkInfoImpl());
     Get.lazyPut(() => DioConsumer(client: Get.find(),logInterceptor:Get.find(),appIntercepters:Get.find()));
 
 
 
-
+    Get.put(Dio());
 
     //! External
 
@@ -41,13 +49,7 @@ class InitialBindings extends Bindings {
 
     Get.lazyPut(() => AppIntercepters());
     Get.lazyPut(() => LocaleController());
-    Get.lazyPut(() => LogInterceptor(
-        request: true,
-        requestBody: true,
-        requestHeader: true,
-        responseBody: true,
-        responseHeader: true,
-        error: true));
+
     Get.lazyPut(() => InternetConnectionChecker());
     Get.lazyPut(() => Dio());
 

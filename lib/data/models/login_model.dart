@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:my_getx_clean_architecture/domain/entities/auth/login.dart';
-import 'package:my_getx_clean_architecture/domain/entities/auth/user.dart';
 
 LoginModel LoginModelFromJson(String str) =>
     LoginModel.fromJson(json.decode(str));
